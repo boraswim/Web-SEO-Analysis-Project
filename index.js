@@ -26,7 +26,9 @@ function getElements(page)
     const images = dom.window.document.images;
     const links = dom.window.document.links;
     const scripts = dom.window.document.scripts;
-    const internalStyles = dom.window.document.querySelectorAll('[style]');
+    const inlineStyles = dom.window.document.querySelectorAll('[style]');
+    const internalStyles = dom.window.document.querySelectorAll('style');
+    const externalStyles = dom.window.document.querySelectorAll('[rel|="stylesheet"]');
     // const texts = dom.window.document.textContent;
 
    console.log("IMAGES");
@@ -44,12 +46,21 @@ function getElements(page)
         {
             console.log(i+1 + ". script src: " + scripts[i].src + "\ninner-html:" + scripts[i].innerHTML);
         }
+    console.log("IN-LINE STYLES");
+    for(let i = 0; i < inlineStyles.length; i++)
+        {
+            console.log(i+1 + ". in-line style: " + inlineStyles[i].style.cssText);
+        }
     console.log("INTERNAL STYLES");
     for(let i = 0; i < internalStyles.length; i++)
         {
-            console.log(i+1 + ". internal style: " + internalStyles[i].style.cssText);
+            console.log(i+1 + ". internal style: " + internalStyles[i].innerHTML);
         }
-    
+    console.log("EXTERNAL STYLES");
+    for(let i = 0; i < externalStyles.length; i++)
+        {
+            console.log(i+1 + ". external style: " + externalStyles[i].href);
+        }
     /*
     OLD cheerio CODE
     const $ = cheerio.load(data);

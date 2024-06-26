@@ -106,8 +106,6 @@ function getElements(page)
                 metaObj[attrName] = attrValue;
             }
         metaArray.push(metaObj);
-        //metaArray.push({id:i+1, name:metas[i].name, property:metas[i].getAttribute('property'), content:metas[i].content, http:metas[i].httpEquiv});
-        // need to get all attributes
     }
     console.log(metaArray);
 };

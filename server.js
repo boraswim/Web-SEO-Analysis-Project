@@ -61,7 +61,7 @@ function getElements(page)
     {
         scriptArray.push({id:i+1, src:scripts[i].src, script:scripts[i].innerHTML});
     }
-    // console.log(scriptArray);
+    console.log(scriptArray);
 
     console.log("STYLES");
     for(let i = 0; i < inlineStyles.length; i++)
@@ -80,7 +80,7 @@ function getElements(page)
 
     console.log("TEXTS");
     text = textContent;
-    // console.log(text);
+    console.log(text);
 
     console.log("HEADINGS");
     for(let i = 0; i < hText.length; i++)
@@ -91,7 +91,7 @@ function getElements(page)
 
     console.log("HEADER");
     header = headerContent;
-    // console.log(header);
+    console.log(header);
 
     console.log("METAS");
     for(let i = 0; i < metas.length; i++)

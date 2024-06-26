@@ -23,60 +23,91 @@ performScraping()
 function getElements(page)
 {
     const dom = new JSDOM(page);
+    let imageArray = [];
     const images = dom.window.document.images;
+    let linkArray = [];
     const links = dom.window.document.links;
+    let scriptArray = [];
     const scripts = dom.window.document.scripts;
+    let styleArray = [];
     const inlineStyles = dom.window.document.querySelectorAll('[style]');
     const internalStyles = dom.window.document.querySelectorAll('style');
     const externalStyles = dom.window.document.querySelectorAll('[rel|="stylesheet"]');
-    const elements = dom.window.document.querySelectorAll('*');
+    let text = "";
+    const textContent = dom.window.document.body.textContent;
+    let hArray = [];
+    const hText = dom.window.document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+    let header = "";
+    const headerContent = dom.window.document.head.innerHTML;
+    let metaArray = [];
+    const metas = dom.window.document.querySelectorAll('meta');
 
    console.log("IMAGES");
    for(let i = 0; i < images.length; i++)
     {
-        console.log(i+1 + ". image source: " + images[i].src + "\nalt-text: " + images[i].alt);
+        imageArray.push({id:i+1, source:images[i].src, alt:images[i].alt});
     }
+    console.log(imageArray);
+
     console.log("LINKS");
     for(let i = 0; i < links.length; i++)
-        {
-            console.log(i+1 + ". link href: " + links[i].href);
-        }
+    {
+        linkArray.push({id:i+1, link:links[i].href});
+    }
+    console.log(linkArray);
+
     console.log("SCRIPTS");
     for(let i = 0; i < scripts.length; i++)
-        {
-            console.log(i+1 + ". script src: " + scripts[i].src + "\ninner-html:" + scripts[i].innerHTML);
-        }
-    console.log("IN-LINE STYLES");
-    for(let i = 0; i < inlineStyles.length; i++)
-        {
-            console.log(i+1 + ". in-line style: " + inlineStyles[i].style.cssText);
-        }
-    console.log("INTERNAL STYLES");
-    for(let i = 0; i < internalStyles.length; i++)
-        {
-            console.log(i+1 + ". internal style: " + internalStyles[i].innerHTML);
-        }
-    console.log("EXTERNAL STYLES");
-    for(let i = 0; i < externalStyles.length; i++)
-        {
-            console.log(i+1 + ". external style: " + externalStyles[i].href);
-        }
-    
-    console.log("TEXTS")
-    for(let i = 0; i < elements.length; i++)
-        {
-            console.log(i+1 + ". element text: " + elements[i].textContent);
-        }
-    /*
-    OLD cheerio CODE
-    const $ = cheerio.load(data);
-    const $links = $('link');
-    const $images = $('img');
-    const $scripts = $('script');
-    const $styles = $("[style!='']");
-    const $texts = $('p');
-    console.log($styles);
-    */
-};
+    {
+        scriptArray.push({id:i+1, src:scripts[i].src, script:scripts[i].innerHTML});
+    }
+    // console.log(scriptArray);
 
-// will use jsdom instead of cheerio
+    console.log("STYLES");
+    for(let i = 0; i < inlineStyles.length; i++)
+    {
+        styleArray.push({id:i+1, type:"inline", css:inlineStyles[i].style.cssText});
+    }
+    for(let i = 0; i < internalStyles.length; i++)
+    {
+            styleArray.push({id:styleArray.length+1, type:"internal", css:internalStyles[i].innerHTML});
+    }
+    for(let i = 0; i < externalStyles.length; i++)
+    {
+            styleArray.push({id:styleArray.length+1, type:"external", css:externalStyles[i].href});
+    }
+    console.log(styleArray);
+
+    console.log("TEXTS");
+    text = textContent;
+    // console.log(text);
+
+    console.log("HEADINGS");
+    for(let i = 0; i < hText.length; i++)
+    {
+        hArray.push({id:i+1, type:hText[i].tagName.toLowerCase(), text:hText[i].innerHTML});
+    }
+    console.log(hArray);
+
+    console.log("HEADER");
+    header = headerContent;
+    // console.log(header);
+
+    console.log("METAS");
+    for(let i = 0; i < metas.length; i++)
+    {
+        var metaObj = {};
+        metaObj["id"] = i + 1;
+        for(let j = 0; j < metas[i].attributes.length; j++)
+            {
+                var currentAttr = metas[i].attributes[j];
+                var attrName = currentAttr.name;
+                var attrValue = currentAttr.value;
+                metaObj[attrName] = attrValue;
+            }
+        metaArray.push(metaObj);
+        //metaArray.push({id:i+1, name:metas[i].name, property:metas[i].getAttribute('property'), content:metas[i].content, http:metas[i].httpEquiv});
+        // need to get all attributes
+    }
+    console.log(metaArray);
+};

@@ -1,3 +1,71 @@
+import jsdom from 'jsdom';
+const { JSDOM } = jsdom;
+
+function ParseElements(page)
+{
+        const parsedElements = {};
+        const dom = new JSDOM(page);
+        let imageArray = [];
+        const images = dom.window.document.images;
+        let linkArray = [];
+        const links = dom.window.document.links;
+        let scriptArray = [];
+        const scripts = dom.window.document.scripts;
+        let styleArray = [];
+        const inlineStyles = dom.window.document.querySelectorAll('[style]');
+        const internalStyles = dom.window.document.querySelectorAll('style');
+        const externalStyles = dom.window.document.querySelectorAll('[rel|="stylesheet"]');
+        let text = "";
+        const textContent = dom.window.document.querySelectorAll("*");
+        let headingArray = [];
+        const headings = dom.window.document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+        let header = "";
+        const headerContent = dom.window.document.head.innerHTML;
+        let metaArray = [];
+        const metas = dom.window.document.querySelectorAll('meta');
+    
+        // console.log("IMAGES");
+        imageArray = ParseImage(images);
+        parsedElements["images"] = imageArray;
+        // console.log(imageArray);
+    
+        // console.log("LINKS");
+        linkArray = ParseLink(links);
+        parsedElements["links"] = linkArray;
+        // console.log(linkArray);
+    
+        // console.log("SCRIPTS");
+        scriptArray = ParseScript(scripts);
+        parsedElements["scripts"] = scriptArray;
+        // console.log(scriptArray);
+    
+        // console.log("STYLES");
+        styleArray = ParseStyle(inlineStyles, internalStyles, externalStyles);
+        parsedElements["stytles"] = styleArray;
+        // console.log(styleArray);
+    
+        // console.log("TEXTS");
+        text = ParseText(textContent);
+        parsedElements["texts"] = text;
+        // console.log(text);
+    
+        // console.log("HEADINGS");
+        headingArray=ParseHeading(headings);
+        parsedElements["headings"] = headingArray;
+        // console.log(headingArray);
+    
+        // console.log("HEADER");
+        header = ParseHeader(headerContent);
+        parsedElements["header"] = header;
+        // console.log(header);
+    
+        // console.log("METAS");
+        metaArray = ParseMeta(metas);
+        parsedElements["metas"] = metaArray;
+        // console.log(metaArray);
+        return parsedElements;
+    }
+
 function ParseImage(images)
 {
     var imageArray = [];
@@ -141,4 +209,4 @@ function ParseHeader(headerContent)
     return header;
 }
 
-export {ParseImage, ParseLink, ParseScript, ParseStyle, ParseMeta, ParseHeading, ParseText, ParseHeader};
+export default ParseElements;

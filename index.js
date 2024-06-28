@@ -14,7 +14,7 @@ app.get("/scrapeurl", (req, res) => {
 })
 
 app.get("/", (req,res) => {
-    res.send("Test");
+    res.send("Home Page");
 })
 
 app.listen(3000, () =>

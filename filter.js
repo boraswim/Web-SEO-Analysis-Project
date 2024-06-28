@@ -1,5 +1,6 @@
 function LinkFilter(linkObj)
 {
+    var filteredObj = {};
     var filteredObj = linkObj;
         if(filteredObj["href"].startsWith("/"))
             {

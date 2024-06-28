@@ -17,7 +17,7 @@ function ParseElements(page)
         const internalStyles = dom.window.document.querySelectorAll('style');
         const externalStyles = dom.window.document.querySelectorAll('[rel|="stylesheet"]');
         let text = "";
-        const textContent = dom.window.document.querySelectorAll("*");
+        const textContent = dom.window.document.body.querySelectorAll('*');
         let headingArray = [];
         const headings = dom.window.document.querySelectorAll('h1, h2, h3, h4, h5, h6');
         let header = "";
@@ -200,7 +200,7 @@ function ParseText(textContent)
     var text = "";
     for(let i=0; i< textContent.length; i++)
         {
-            text.concat(textContent[i].textContent);
+            text = text + textContent[i].textContent;
         }
     return text;
 }

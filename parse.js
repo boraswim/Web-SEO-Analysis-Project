@@ -1,4 +1,5 @@
 import jsdom from 'jsdom';
+import LinkFilter from './filter.js';
 const { JSDOM } = jsdom;
 
 function ParseElements(page)
@@ -103,6 +104,7 @@ function ParseLink(links)
                     linkObj[attrName] = attrValue;
                 }
             }
+            LinkFilter(linkObj);
             linkArray.push(linkObj);
         }
     return linkArray;

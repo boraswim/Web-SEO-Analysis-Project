@@ -1,7 +1,9 @@
 import ParseElements from './parse.js';
 import ScrapeUrl from './scrape.js';
 import express from 'express';
+import cors from 'cors';
 const app = express();
+app.use(cors());
 
 app.get("/scrapeurl", (req, res) => {
     var resultObj = {};

@@ -1,7 +1,6 @@
 "use client"
 
 import style from '../../public/main.css';
-import bootstrap from '../../public/bootstrap.min.css';
 import axios from 'axios';
 import { useState } from 'react';
 

@@ -73,7 +73,7 @@ function ParseImage(images)
     for(let i=0; i< images.length; i++)
         {
             var imageObj = {};
-            imageObj["no"] = i + 1;
+            imageObj["key"] = i + 1;
             for(let j = 0; j < images[i].attributes.length; j++)
             {
                var currentAttr = images[i].attributes[j];
@@ -94,7 +94,7 @@ function ParseLink(links)
     for(let i=0; i< links.length; i++)
         {
             var linkObj = {};
-            linkObj["no"] = i + 1;
+            linkObj["key"] = i + 1;
             for(let j = 0; j < links[i].attributes.length; j++)
             {
                 var currentAttr = links[i].attributes[j];
@@ -116,7 +116,7 @@ function ParseScript(scripts)
     for(let i = 0; i < scripts.length; i++)
         {
             var scriptObj = {};
-            scriptObj["no"] = i + 1;
+            scriptObj["key"] = i + 1;
             for(let j = 0; j < scripts[i].attributes.length; j++)
                 {
                     var currentAttr = scripts[i].attributes[j];
@@ -140,15 +140,15 @@ function ParseStyle(inlineStyles, internalStyles, externalStyles)
     var styleArray = [];
     for(let i = 0; i < inlineStyles.length; i++)
         {
-            styleArray.push({no:i+1, type:"inline", css:inlineStyles[i].style.cssText});
+            styleArray.push({key:i+1, type:"inline", css:inlineStyles[i].style.cssText});
         }
         for(let i = 0; i < internalStyles.length; i++)
         {
-                styleArray.push({no:styleArray.length+1, type:"internal", css:internalStyles[i].innerHTML});
+                styleArray.push({key:styleArray.length+1, type:"internal", css:internalStyles[i].innerHTML});
         }
         for(let i = 0; i < externalStyles.length; i++)
         {
-                styleArray.push({no:styleArray.length+1, type:"external", css:externalStyles[i].href});
+                styleArray.push({key:styleArray.length+1, type:"external", css:externalStyles[i].href});
         }
     return styleArray;
 }
@@ -159,7 +159,7 @@ function ParseMeta(metas)
     for(let i = 0; i < metas.length; i++)
         {
             var metaObj = {};
-            metaObj["no"] = i + 1;
+            metaObj["key"] = i + 1;
             for(let j = 0; j < metas[i].attributes.length; j++)
                 {
                     var currentAttr = metas[i].attributes[j];
@@ -178,7 +178,7 @@ function ParseHeading(headings)
     for(let i = 0; i < headings.length; i++)
         {
             var headingObj = {};
-            headingObj["no"] = i + 1;
+            headingObj["key"] = i + 1;
             headingObj["type"] = headings[i].tagName;
             for(let j = 0; j < headings[i].attributes.length; j++)
                 {

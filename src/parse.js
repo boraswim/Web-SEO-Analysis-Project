@@ -42,7 +42,7 @@ function ParseElements(page)
     
         // console.log("STYLES");
         styleArray = ParseStyle(inlineStyles, internalStyles, externalStyles);
-        parsedElements["stytles"] = styleArray;
+        parsedElements["styles"] = styleArray;
         // console.log(styleArray);
     
         // console.log("TEXTS");

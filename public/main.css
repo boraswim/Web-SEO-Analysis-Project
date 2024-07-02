@@ -11,7 +11,7 @@
 
 .background
 {
-    background-color: #FFFFFF;
-    background: radial-gradient(circle, transparent 20%, #FFFFFF 20%, #FFFFFF 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #FFFFFF 20%, #FFFFFF 80%, transparent 80%, transparent) 25px 25px, linear-gradient(rgba(0,0,0,0.25), 2px, transparent 2px) 0 -1px, linear-gradient(90deg, rgba(0,0,0,0.25) 2px, #FFFFFF 2px) -1px 0;
-    background-size: 50px 50px, 50px 50px, 25px 25px, 25px 25px;
+    background-color: #ffffff;
+    background: radial-gradient(circle, transparent 20%, #ffffff 20%, #ffffff 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #ffffff 20%, #ffffff 80%, transparent 80%, transparent) 57.5px 57.5px, linear-gradient(rgba(0,0,0,0.3) 4.6000000000000005px, transparent 4.6000000000000005px) 0 -2.3000000000000003px, linear-gradient(90deg, rgba(0,0,0,0.3) 4.6000000000000005px, #ffffff 4.6000000000000005px) -2.3000000000000003px 0;
+    background-size: 115px 115px, 115px 115px, 57.5px 57.5px, 57.5px 57.5px;
 }

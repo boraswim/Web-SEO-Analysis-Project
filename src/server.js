@@ -6,17 +6,16 @@ const app = express();
 app.use(cors());
 
 app.get("/scrapeurl", (req, res) => {
-    var resultObj = {};
     const scrapeUrl = req.query.url;
     ScrapeUrl(scrapeUrl)
     .then(function(result){
-        resultObj = ParseElements(result);
+        const resultObj = ParseElements(result);
         res.send(resultObj);
     })
 })
 
 app.get("/", (req,res) => {
-    res.send("Home Page");
+    res.send("Server Page");
 })
 
 app.listen(3000, () =>

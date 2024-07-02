@@ -6,6 +6,9 @@ export default function RootLayout({ children }) {
       <html lang="en" className='background'>  
         <body>
           {children}
+          <div className='position-absolute bottom-0 end-0 bg-light mx-auto p-2'>
+            <b>Bora Sevim 2024</b>
+          </div>
         </body>
       </html>
     )

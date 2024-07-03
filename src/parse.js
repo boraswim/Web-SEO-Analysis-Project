@@ -1,5 +1,6 @@
 import jsdom from 'jsdom';
 import LinkFilter from './filter.js';
+import { text } from 'express';
 const { JSDOM } = jsdom;
 
 function ParseElements(page)
@@ -17,7 +18,10 @@ function ParseElements(page)
         const internalStyles = dom.window.document.querySelectorAll('style');
         const externalStyles = dom.window.document.querySelectorAll('[rel|="stylesheet"]');
         let text = "";
-        const textContent = dom.window.document.body.querySelectorAll('*');
+        const textClone = dom.window.document.documentElement.cloneNode(true);
+        textClone.querySelectorAll('script','style').forEach(element => element.remove());
+        const textContentt = textClone.textContent.trim();
+        console.log(textContentt);
         let headingArray = [];
         const headings = dom.window.document.querySelectorAll('h1, h2, h3, h4, h5, h6');
         let header = "";
@@ -46,7 +50,7 @@ function ParseElements(page)
         // console.log(styleArray);
     
         // console.log("TEXTS");
-        text = ParseText(textContent);
+        text = ParseText(textContentt);
         parsedElements["texts"] = text;
         // console.log(text);
     
@@ -197,11 +201,7 @@ function ParseHeading(headings)
 
 function ParseText(textContent)
 {
-    var text = "";
-    for(let i=0; i< textContent.length; i++)
-        {
-            text = text + textContent[i].textContent;
-        }
+    var text = textContent;
     return text;
 }
 

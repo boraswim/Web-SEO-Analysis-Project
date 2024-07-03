@@ -16,4 +16,5 @@ function LinkFilter(linkObj)
             }
     return filteredObj;
 }
+
 export default LinkFilter;

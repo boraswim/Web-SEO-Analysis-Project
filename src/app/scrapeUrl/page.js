@@ -27,13 +27,13 @@ function Page()
         console.log(`fetched ${fetched} times`);
     }, [fetched]);
 
-    function TraverseKeys(object)
+    function TraverseKeys(object, index)
     {
         var outputTxt ='';
         Object.keys(object).forEach(key => {
             outputTxt = outputTxt + `${key}: ${object[key]}, `;
         });
-        return <li key={object.key} className='text-break'>{outputTxt}<hr/></li>;
+        return <li key={index} className='text-break'>{outputTxt}<hr/></li>;
     }
 
     // Warning: 'Each child in a list should have a unique "key" prop'???
@@ -52,32 +52,32 @@ function Page()
             <Tab eventKey="images" title="Images">
                 <h3>Images Tab ({result.images.length} images in total)</h3>
                 <ul>
-                {result.images.map(item => {
-                    return TraverseKeys(item)
+                {result.images.map((item, index) => {
+                    return TraverseKeys(item, index)
                 })}
                 </ul>
             </Tab>
             <Tab eventKey="links" title="Links">
                 <h3>Links Tab ({result.links.length} links in total)</h3>
                 <ul>
-                {result.links.map(item => {
-                    return TraverseKeys(item);
+                {result.links.map((item, index) => {
+                    return TraverseKeys(item, index);
                 })}
                 </ul>
             </Tab>
             <Tab eventKey="scripts" title="Scripts">
             <h3>Scripts Tab ({result.scripts.length} scripts in total)</h3>
                 <ul>
-                {result.scripts.map(item => {
-                    return TraverseKeys(item);
+                {result.scripts.map((item, index) => {
+                    return TraverseKeys(item, index);
                 })}
                 </ul>
             </Tab>
             <Tab eventKey="styles" title="Styles">
             <h3>Styles Tab ({result.styles.length} styles in total)</h3>
                 <ul>
-                {result.styles.map(item => {
-                    return TraverseKeys(item);
+                {result.styles.map((item, index) => {
+                    return TraverseKeys(item, index);
                 })}
                 </ul>
             </Tab>
@@ -88,8 +88,8 @@ function Page()
             <Tab eventKey="headings" title="Headings">
                 <h3>Headings Tab ({result.headings.length} links in total)</h3>
                 <ul>
-                {result.headings.map(item => {
-                    return TraverseKeys(item);
+                {result.headings.map((item, index) => {
+                    return TraverseKeys(item, index);
                 })}
                 </ul>
             </Tab>
@@ -100,8 +100,8 @@ function Page()
             <Tab eventKey="metas" title="Metas">
             <h3>Metas Tab ({result.metas.length} links in total)</h3>
                 <ul>
-                {result.metas.map(item => {
-                    return TraverseKeys(item);
+                {result.metas.map((item, index) => {
+                    return TraverseKeys(item, index);
                 })}
                 </ul>
             </Tab>

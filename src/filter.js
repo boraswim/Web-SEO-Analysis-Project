@@ -2,11 +2,11 @@ function LinkFilter(linkObj)
 {
     var filteredObj = {};
     var filteredObj = linkObj;
-        if(filteredObj["href"].startsWith("/"))
+        if(filteredObj["href"].startsWith('/'))
             {
                 filteredObj["status"] = "relative";
             }
-        else if(filteredObj["href"]==="")
+        else if(filteredObj["href"]===undefined)
             {
                 filteredObj["status"] = "bad";
             }
@@ -19,9 +19,9 @@ function LinkFilter(linkObj)
 
 function ScriptFilter(scriptObj)
 {
-    var scriptObj = {};
+    var filteredObj = {};
     var filteredObj = scriptObj;
-        if(filteredObj["script"] !== "")
+        if(filteredObj["script"] !== undefined)
             {
                 filteredObj["status"] = "internal";
             }

@@ -1,4 +1,4 @@
-import { ScriptFilter } from "../filter";
+import { ScriptFilter } from "../filter.js";
 
 function ParseScript(dom)
 {
@@ -17,7 +17,7 @@ function ParseScript(dom)
                         scriptObj[attrName] = attrValue;
                     }
                 }
-            if(scripts[i].innerHTML != '')
+            if(scripts[i].innerHTML !== '')
                 {
                 scriptObj["script"] = scripts[i].innerHTML;
                 }

@@ -6,7 +6,7 @@ function ParseHeading(dom)
         {
             var headingObj = {};
             headingObj["key"] = i + 1;
-            headingObj["type"] = headings[i].tagName;
+            headingObj["status"] = headings[i].tagName;
             for(let j = 0; j < headings[i].attributes.length; j++)
                 {
                     var currentAttr = headings[i].attributes[j];

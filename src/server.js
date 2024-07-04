@@ -1,4 +1,4 @@
-import ParseElements from './parse.js';
+import ParseElements from './parser/parser.js';
 import ScrapeUrl from './scrape.js';
 import express from 'express';
 import cors from 'cors';

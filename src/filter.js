@@ -4,17 +4,32 @@ function LinkFilter(linkObj)
     var filteredObj = linkObj;
         if(filteredObj["href"].startsWith("/"))
             {
-                filteredObj["status"]="relative";
+                filteredObj["status"] = "relative";
             }
-        else if(filteredObj["href"]=="")
+        else if(filteredObj["href"]==="")
             {
-                filteredObj["status"]="bad";
+                filteredObj["status"] = "bad";
             }
         else
             {
-                filteredObj["status"]="absolute";
+                filteredObj["status"] = "absolute";
             }
     return filteredObj;
 }
 
-export default LinkFilter;
+function ScriptFilter(scriptObj)
+{
+    var scriptObj = {};
+    var filteredObj = scriptObj;
+        if(filteredObj["script"] !== "")
+            {
+                filteredObj["status"] = "internal";
+            }
+        else
+            {
+                filteredObj["status"] = "external";
+            }
+    return filteredObj;
+}
+
+export {LinkFilter, ScriptFilter};

@@ -6,7 +6,7 @@ function LinkFilter(linkObj)
             {
                 filteredObj["status"] = "relative";
             }
-        else if(filteredObj["href"]===undefined)
+        else if(filteredObj["href"]===null)
             {
                 filteredObj["status"] = "bad";
             }

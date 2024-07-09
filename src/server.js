@@ -1,4 +1,5 @@
 import ParseElements from './parser/parser.js';
+import AnalyzePage from './analyzer/analyzer.js';
 import ScrapeUrl from './scrape.js';
 import express from 'express';
 import cors from 'cors';
@@ -9,7 +10,8 @@ app.get("/scrapeurl", (req, res) => {
     const scrapeUrl = req.query.url;
     ScrapeUrl(scrapeUrl)
     .then(function(result){
-        const resultObj = ParseElements(result);
+        // const resultObj = ParseElements(result);
+        const resultObj = AnalyzePage(result);
         res.send(resultObj);
     })
 })

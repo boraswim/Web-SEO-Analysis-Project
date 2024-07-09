@@ -1,5 +1,4 @@
 import jsdom from 'jsdom';
-import { text } from 'express';
 import ParseHeader from './header.js';
 import ParseHeading from './headings.js';
 import ParseImage from './images.js';

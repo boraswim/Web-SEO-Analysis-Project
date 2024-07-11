@@ -39,7 +39,7 @@ function ParseElements(page)
         let metaArray = ParseMeta(dom);
         parsedElements["metas"] = metaArray;
 
-        parsedElements["size"] = dom.window.document.getElementsByTagName('HTML')[0].outerHTML.length;
+        parsedElements["size"] = dom.serialize().length;
 
         return parsedElements;
     }

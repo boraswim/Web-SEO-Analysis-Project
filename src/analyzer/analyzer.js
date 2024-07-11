@@ -27,9 +27,11 @@ import CheckSsl from './security/ssl.js';
 
 const { JSDOM } = jsdom;
 
-function AnalyzePage(page)
+async function AnalyzePage(page, analyzeUrl)
 {
-    const dom = new JSDOM(page);
+    const dom = new JSDOM(page, {
+        url: analyzeUrl
+    });
 
     const analyzeResults = {};
     const basicResults = {};

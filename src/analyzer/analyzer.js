@@ -5,19 +5,33 @@ import CheckAltText from './basic/alttext.js';
 import CheckH1 from './basic/header1.js';
 import CheckH2 from './basic/header2.js';
 import CheckLink from './basic/link.js';
+import CheckCanonicalLink from './advanced/canonical.js';
 const { JSDOM } = jsdom;
 
 function AnalyzePage(page)
 {
     const dom = new JSDOM(page);
+    
     const analyzeResults = {};
+    const basicResults = {};
+    const advancedResults = {};
+    const performanceResults = {};
+    const securityResults = {};
 
-    analyzeResults["title"] = CheckTitle(dom);
-    analyzeResults["description"] = CheckDescription(dom);
-    analyzeResults["h1"] = CheckH1(dom);
-    analyzeResults["h2"] = CheckH2(dom);
-    analyzeResults["alttext"] = CheckAltText(dom);
-    analyzeResults["link"] = CheckLink(dom);
+    basicResults["title"] = CheckTitle(dom);
+    basicResults["description"] = CheckDescription(dom);
+    basicResults["h1"] = CheckH1(dom);
+    basicResults["h2"] = CheckH2(dom);
+    basicResults["alttext"] = CheckAltText(dom);
+    basicResults["link"] = CheckLink(dom);
+    analyzeResults["basic"] = basicResults;
+
+    advancedResults["canonical"] = CheckCanonicalLink(dom);
+    analyzeResults["advanced"] = advancedResults;
+
+    analyzeResults["performance"] = performanceResults;
+
+    analyzeResults["security"] = securityResults;
 
     console.log(analyzeResults);
     return analyzeResults;

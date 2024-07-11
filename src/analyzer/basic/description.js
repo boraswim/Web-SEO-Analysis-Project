@@ -1,9 +1,11 @@
 function CheckDescription(dom)
 {
-    if(dom.window.document.querySelector("meta[name='description']").hasAttribute("content"))
+    const metaDescription = dom.window.document.querySelector("meta[name='description']");
+    
+    if(metaDescription !== null && metaDescription.hasAttribute("content"))
     {
-        const metaDescription = dom.window.document.querySelector("meta[name='description']").getAttribute("content");
-        if(metaDescription.length > 40 && metaDescription.length < 80)
+        const descriptionContent = dom.window.document.querySelector("meta[name='description']").getAttribute("content");
+        if(descriptionContent.length > 40 && descriptionContent.length < 80)
             {
                 return 'positive';
             }

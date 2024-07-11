@@ -1,17 +1,37 @@
 import jsdom from 'jsdom';
+
 import CheckTitle from './basic/title.js';
 import CheckDescription from './basic/description.js';
 import CheckAltText from './basic/alttext.js';
 import CheckH1 from './basic/header1.js';
 import CheckH2 from './basic/header2.js';
 import CheckLink from './basic/link.js';
+import CheckKeyword from './basic/keyword.js';
+
 import CheckCanonicalLink from './advanced/canonical.js';
+import CheckNoIndexHeader from './advanced/noindex.js';
+import CheckRedirect from './advanced/redirect.js';
+import CheckRobots from './advanced/robots.js';
+import CheckOpenGraph from './advanced/opengraph.js';
+import CheckSchema from './advanced/schema.js';
+
+import CheckExpiresHeader from './performance/expires.js';
+import CheckJsMinify from './performance/jsminify.js';
+import CheckCssMinify from './performance/cssminify.js';
+import CheckRequests from './performance/requests.js';
+import CheckPageSize from './performance/size.js';
+import CheckResponseTime from './performance/response.js';
+
+import CheckDirectoryListing from './security/directorylisting.js';
+import CheckGoogleFlag from './security/googleflag.js';
+import CheckSsl from './security/ssl.js';
+
 const { JSDOM } = jsdom;
 
 function AnalyzePage(page)
 {
     const dom = new JSDOM(page);
-    
+
     const analyzeResults = {};
     const basicResults = {};
     const advancedResults = {};
@@ -24,13 +44,28 @@ function AnalyzePage(page)
     basicResults["h2"] = CheckH2(dom);
     basicResults["alttext"] = CheckAltText(dom);
     basicResults["link"] = CheckLink(dom);
+    basicResults["keyword"] = CheckKeyword(dom);
     analyzeResults["basic"] = basicResults;
 
     advancedResults["canonical"] = CheckCanonicalLink(dom);
+    advancedResults["noindex"] = CheckNoIndexHeader(dom);
+    advancedResults["redirect"] = CheckRedirect(dom);
+    advancedResults["robots"] = CheckRobots(dom);
+    advancedResults["opengraph"] = CheckOpenGraph(dom);
+    advancedResults["schema"] = CheckSchema(dom);
     analyzeResults["advanced"] = advancedResults;
 
+    performanceResults["expires"] = CheckExpiresHeader(dom);
+    performanceResults["jsminify"] = CheckJsMinify(dom);
+    performanceResults["cssminify"] = CheckCssMinify(dom);
+    performanceResults["requests"] = CheckRequests(dom);
+    performanceResults["size"] = CheckPageSize(dom);
+    performanceResults["response"] = CheckResponseTime(dom);
     analyzeResults["performance"] = performanceResults;
 
+    securityResults["directorylisting"] = CheckDirectoryListing(dom);
+    securityResults["googleflag"] = CheckGoogleFlag(dom);
+    securityResults["ssl"] = CheckSsl(dom);
     analyzeResults["security"] = securityResults;
 
     console.log(analyzeResults);

@@ -5,7 +5,7 @@ import CheckDescription from './basic/description.js';
 import CheckAltText from './basic/alttext.js';
 import CheckH1 from './basic/header1.js';
 import CheckH2 from './basic/header2.js';
-import CheckLink from './basic/link.js';
+import CheckLinks from './basic/links.js';
 import CheckKeyword from './basic/keyword.js';
 
 import CheckCanonicalLink from './advanced/canonical.js';
@@ -13,14 +13,13 @@ import CheckNoIndexHeader from './advanced/noindex.js';
 import CheckRedirect from './advanced/redirect.js';
 import CheckRobots from './advanced/robots.js';
 import CheckOpenGraph from './advanced/opengraph.js';
-import CheckSchema from './advanced/schema.js';
 
 import CheckExpiresHeader from './performance/expires.js';
 import CheckJsMinify from './performance/jsminify.js';
 import CheckCssMinify from './performance/cssminify.js';
 import CheckRequests from './performance/requests.js';
-import CheckPageSize from './performance/size.js';
-import CheckResponseTime from './performance/response.js';
+import CheckPageSize from './performance/pagesize.js';
+import CheckResponseTime from './performance/responsetime.js';
 
 import CheckDirectoryListing from './security/directorylisting.js';
 import CheckGoogleFlag from './security/googleflag.js';
@@ -43,7 +42,7 @@ function AnalyzePage(page)
     basicResults["h1"] = CheckH1(dom);
     basicResults["h2"] = CheckH2(dom);
     basicResults["alttext"] = CheckAltText(dom);
-    basicResults["link"] = CheckLink(dom);
+    basicResults["link"] = CheckLinks(dom);
     basicResults["keyword"] = CheckKeyword(dom);
     analyzeResults["basic"] = basicResults;
 
@@ -52,7 +51,6 @@ function AnalyzePage(page)
     advancedResults["redirect"] = CheckRedirect(dom);
     advancedResults["robots"] = CheckRobots(dom);
     advancedResults["opengraph"] = CheckOpenGraph(dom);
-    advancedResults["schema"] = CheckSchema(dom);
     analyzeResults["advanced"] = advancedResults;
 
     performanceResults["expires"] = CheckExpiresHeader(dom);

@@ -50,7 +50,7 @@ function AnalyzePage(page, analyzeUrl)
 
     advancedResults["canonical"] = CheckCanonicalLink(dom);
     advancedResults["noindex"] = CheckNoIndexHeader(dom);
-    advancedResults["redirect"] = CheckRedirect(dom);
+    advancedResults["redirect"] = CheckRedirect(dom);       // FIX SENDING REQUESTS INSIDE FUNCTIONS
     advancedResults["robots"] = CheckRobots(dom);           // FIX SENDING REQUESTS INSIDE FUNCTIONS
     advancedResults["opengraph"] = CheckOpenGraph(dom);
     analyzeResults["advanced"] = advancedResults;
@@ -58,7 +58,7 @@ function AnalyzePage(page, analyzeUrl)
     performanceResults["expires"] = CheckExpiresHeader(dom);
     performanceResults["jsminify"] = CheckJsMinify(dom);
     performanceResults["cssminify"] = CheckCssMinify(dom);
-    performanceResults["requests"] = CheckRequests(dom);
+    performanceResults["requests"] = CheckRequests(dom);    // FIX SENDING REQUESTS INSIDE FUNCTIONS
     performanceResults["size"] = CheckPageSize(dom);
     performanceResults["response"] = CheckResponseTime(dom);
     analyzeResults["performance"] = performanceResults;

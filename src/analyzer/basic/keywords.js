@@ -4,9 +4,9 @@ Use the keywords naturally - keyword stuffing is usually detected and will resul
 What's more, it's pretty off-putting for potential readers, who are more likely to click on an appealing link.
 */
 
-function CheckKeyword(dom)
+function CheckKeywords(dom)
 {
     return "empty";
 }
 
-export default CheckKeyword;
+export default CheckKeywords;

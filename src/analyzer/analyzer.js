@@ -6,7 +6,7 @@ import CheckAltText from './basic/alttext.js';
 import CheckH1 from './basic/header1.js';
 import CheckH2 from './basic/header2.js';
 import CheckLinks from './basic/links.js';
-import CheckKeyword from './basic/keyword.js';
+import CheckKeywords from './basic/keywords.js';
 
 import CheckCanonicalLink from './advanced/canonical.js';
 import CheckNoIndexHeader from './advanced/noindex.js';
@@ -45,7 +45,7 @@ function AnalyzePage(page, analyzeUrl)
     basicResults["h2"] = CheckH2(dom);
     basicResults["alttext"] = CheckAltText(dom);
     basicResults["link"] = CheckLinks(dom);
-    basicResults["keyword"] = CheckKeyword(dom);
+    basicResults["keyword"] = CheckKeywords(dom);
     analyzeResults["basic"] = basicResults;
 
     advancedResults["canonical"] = CheckCanonicalLink(dom);

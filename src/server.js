@@ -13,17 +13,21 @@ app.get("/scrapeurl", (req, res) => {
         const resultObj = ParseElements(result);
         res.send(resultObj);
     })
+    .catch(function(error){
+        console.log("Error occured scraping url: " + scrapeUrl);
+    });
 })
 
 app.get("/analyzeurl", (req, res) => {
     const scrapeUrl = req.query.url;
     ScrapeUrl(scrapeUrl)
     .then(function(result){
-        AnalyzePage(result, scrapeUrl)
-        .then(function(result){
-            res.send(result);
+        const resultObj = AnalyzePage(result.data, scrapeUrl)
+        res.send(resultObj);
         })
-    })
+    .catch(function(error){
+        console.log("Error occured scraping url: " + scrapeUrl);
+    });
 })
 
 app.get("/", (req,res) => {

@@ -7,23 +7,26 @@ A simpler option is to use a plugin for your CMS platform.
 
 import ScrapeUrl from "../../scrape.js";
 
-function CheckRobots(dom)
+// Async function does not work in base analyzer function
+async function CheckRobots(dom)
 {
+    /*
     var robots;
-    console.log("origin:" + dom.window.location.origin);
     ScrapeUrl(dom.window.location.origin + '/robots.txt')
-    .then(function(result){
-        robots = result;
+    .then((result) => {
+        robots = result.data;
     })
-    console.log(robots);
-    if(robots !== null)
+
+    if(robots !== undefined)
     {
         return "positive";
     }
     else
     {
-        return "empty";
+        return "negative - robots.txt not found";
     }
+    */
+   return "empty";
 }
 
 export default CheckRobots;

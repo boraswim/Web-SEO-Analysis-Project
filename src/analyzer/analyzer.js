@@ -27,7 +27,7 @@ import CheckSsl from './security/ssl.js';
 
 const { JSDOM } = jsdom;
 
-async function AnalyzePage(page, analyzeUrl)
+function AnalyzePage(page, analyzeUrl)
 {
     const dom = new JSDOM(page, {
         url: analyzeUrl
@@ -51,7 +51,7 @@ async function AnalyzePage(page, analyzeUrl)
     advancedResults["canonical"] = CheckCanonicalLink(dom);
     advancedResults["noindex"] = CheckNoIndexHeader(dom);
     advancedResults["redirect"] = CheckRedirect(dom);
-    advancedResults["robots"] = CheckRobots(dom);
+    advancedResults["robots"] = CheckRobots(dom);           // FIX SENDING REQUESTS INSIDE FUNCTIONS
     advancedResults["opengraph"] = CheckOpenGraph(dom);
     analyzeResults["advanced"] = advancedResults;
 

@@ -4,8 +4,8 @@ Only ever use noindex meta tag or header on pages you want to keep out of the re
 
 function CheckNoIndexHeader(dom)
 {
-    const noIndexMeta = dom.window.document.querySelector("meta[content='noindex']");
-    if(noIndexMeta !== null)
+    const noIndexElements = dom.window.document.querySelectorAll("meta[content='noindex']");
+    if(noIndexElements.length > 0)
     {
         return "negative - noindex meta content found";
     }

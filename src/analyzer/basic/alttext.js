@@ -10,20 +10,13 @@ function CheckAltText(dom)
     {
         for(var i = 0; i < imgElements.length; i++)
         {
-            if(imgElements[i].getAttribute("alt") !== undefined)
-            {
-                continue;
-            }
-            else
-            {
-                return 'negative - alttext not found';
-            }
+            if(imgElements[i].getAttribute("alt") !== undefined){continue;}
+            
+            else{return 'negative - alttext not found';}
         }
     }
-    else
-    {
-        return 'negative - image not found';
-    }
+    
+    else{return 'negative - image not found';}
 
     return 'positive';
 }

@@ -7,9 +7,9 @@ function CheckOpenGraph(dom)
 {
     const openGraphElements = dom.window.document.querySelectorAll("meta[property^='og:']");
 
-    if(openGraphElements.length > 0){return 'positive'};
-    
-    return 'negative - opengraph meta tag not found';
+    if(openGraphElements.length > 0){return 'positive';}
+
+    else{return 'negative - opengraph meta tag not found';}
 }
 
 export default CheckOpenGraph;

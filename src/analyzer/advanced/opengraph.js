@@ -5,19 +5,10 @@ The standard is very well documented - you can learn more from Facebook's develo
 
 function CheckOpenGraph(dom)
 {
-    var metaProperty;
-    const metaElements = dom.window.document.querySelectorAll("meta");
-    var ogChecker = 0;
-    
-    for(var i = 0; i < metaElements.length; i++)
-    {
+    const openGraphElements = dom.window.document.querySelectorAll("meta[property^='og:']");
 
-        metaProperty = metaElements[i].getAttribute("property");
-        if(metaProperty !== null && metaProperty.startsWith('og:'))
-        {
-            return 'positive';
-        }
-    }
+    if(openGraphElements.length > 0){return 'positive'};
+    
     return 'negative - opengraph meta tag not found';
 }
 

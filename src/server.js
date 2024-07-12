@@ -6,7 +6,7 @@ import cors from 'cors';
 const app = express();
 app.use(cors());
 
-app.get("/scrapeurl", (req, res) => {
+app.get("/parseurl", (req, res) => {
     const scrapeUrl = req.query.url;
     ScrapeUrl(scrapeUrl)
     .then(function(result){
@@ -14,7 +14,8 @@ app.get("/scrapeurl", (req, res) => {
         res.send(resultObj);
     })
     .catch(function(error){
-        console.log("Error occured scraping url: " + scrapeUrl);
+        console.log("Error occured parsing url: " + scrapeUrl);
+        console.log(error);
     });
 })
 
@@ -26,7 +27,8 @@ app.get("/analyzeurl", (req, res) => {
         res.send(resultObj);
         })
     .catch(function(error){
-        console.log("Error occured scraping url: " + scrapeUrl);
+        console.log("Error occured analyzing url: " + scrapeUrl);
+        console.log(error);
     });
 })
 

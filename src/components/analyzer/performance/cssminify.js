@@ -17,7 +17,7 @@ function CheckCssMinify(dom)
     
     for(var i = 0; i < internalStyles.length; i++)
     {
-        if(internalStyles[i].innerHtml.includes(' ')){return "negative - there are unminified css files";}
+        if(internalStyles[i].innerHTML.includes(' ')){return "negative - there are unminified css files";}
     }
     
     return "positive";

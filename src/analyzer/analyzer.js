@@ -27,7 +27,7 @@ import CheckSsl from './security/ssl.js';
 
 const { JSDOM } = jsdom;
 
-function AnalyzePage(page, analyzeUrl)
+function AnalyzePage(page, headers, analyzeUrl)
 {
     const dom = new JSDOM(page, {
         url: analyzeUrl
@@ -55,7 +55,7 @@ function AnalyzePage(page, analyzeUrl)
     advancedResults["opengraph"] = CheckOpenGraph(dom);
     analyzeResults["advanced"] = advancedResults;
 
-    performanceResults["expires"] = CheckExpiresHeader(dom);
+    performanceResults["expires"] = CheckExpiresHeader(headers);
     performanceResults["jsminify"] = CheckJsMinify(dom);
     performanceResults["cssminify"] = CheckCssMinify(dom);
     performanceResults["requests"] = CheckRequests(dom);    // FIX SENDING REQUESTS INSIDE FUNCTIONS

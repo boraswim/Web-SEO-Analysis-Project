@@ -23,7 +23,8 @@ app.get("/analyzeurl", (req, res) => {
     const scrapeUrl = req.query.url;
     ScrapeUrl(scrapeUrl)
     .then(function(result){
-        const resultObj = AnalyzePage(result.data, scrapeUrl)
+        const httpHeaders = result.headers;
+        const resultObj = AnalyzePage(result.data, result.headers, scrapeUrl);
         res.send(resultObj);
         })
     .catch(function(error){

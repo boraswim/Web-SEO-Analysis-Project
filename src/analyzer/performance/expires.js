@@ -6,9 +6,13 @@ Alternatively, you can use a CMS plugin to simplify the process - it's a more us
 WordPress has a host of caching plugins, and most of them give you options to control the caching headers.
 */
 
-function CheckExpiresHeader(dom)
+function CheckExpiresHeader(headers)
 {
-    return "empty";
+    if('expires' in headers)
+    {
+        return "positive";
+    }
+    return "negative - no expires header found";
 }
 
 export default CheckExpiresHeader;

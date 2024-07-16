@@ -17,7 +17,11 @@ So you should always strip them from your templates or themes before you use the
 
 function CheckPageSize(dom)
 {
-    return "empty";
+    const pageSize = dom.serialize().length / 1000;
+
+    if(pageSize > 50){return 'negative - page size bigger than 50kb';}
+
+    else{return "positive";}
 }
 
 export default CheckPageSize;

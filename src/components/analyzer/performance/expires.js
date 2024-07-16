@@ -8,11 +8,9 @@ WordPress has a host of caching plugins, and most of them give you options to co
 
 function CheckExpiresHeader(headers)
 {
-    if('expires' in headers)
-    {
-        return "positive";
-    }
-    return "negative - no expires header found";
+    if('expires' in headers){return "positive";}
+    
+    else{return "negative - no expires header found";} 
 }
 
 export default CheckExpiresHeader;

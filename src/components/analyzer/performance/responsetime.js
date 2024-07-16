@@ -10,7 +10,7 @@ A user's request is handled by the edge server that's closest to their physical 
 
 function CheckResponseTime(responseTime)
 {
-    const responseTimeInSeconds = responseTime / 100;
+    const responseTimeInSeconds = responseTime / 1000;
     if(responseTimeInSeconds > 0.2){return "negative - load time longer than 0.2 seconds";}
 
     else{return "positive";}

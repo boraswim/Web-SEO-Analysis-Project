@@ -21,10 +21,12 @@ app.get("/parseurl", (req, res) => {
 
 app.get("/analyzeurl", (req, res) => {
     const scrapeUrl = req.query.url;
+    var sendDate = (new Date()).getTime();
     ScrapeUrl(scrapeUrl)
     .then(function(result){
+        var receiveDate = (new Date()).getTime();
         const httpHeaders = result.headers;
-        const resultObj = AnalyzePage(result.data, result.headers, scrapeUrl);
+        const resultObj = AnalyzePage(result.data, result.headers, scrapeUrl, receiveDate - sendDate);
         res.send(resultObj);
         })
     .catch(function(error){

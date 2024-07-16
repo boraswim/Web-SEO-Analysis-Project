@@ -8,9 +8,12 @@ These services host a copy of your content on multiple servers spread out across
 A user's request is handled by the edge server that's closest to their physical location, so the content arrives incredibly fast.
 */
 
-function CheckResponseTime(dom)
+function CheckResponseTime(responseTime)
 {
-    return "empty";
+    const responseTimeInSeconds = responseTime / 100;
+    if(responseTimeInSeconds > 0.2){return "negative - load time longer than 0.2 seconds";}
+
+    else{return "positive";}
 }
 
 export default CheckResponseTime;

@@ -27,7 +27,7 @@ import CheckSsl from './security/ssl.js';
 
 const { JSDOM } = jsdom;
 
-function AnalyzePage(page, headers, analyzeUrl)
+function AnalyzePage(page, headers, analyzeUrl, responseTime)
 {
     const dom = new JSDOM(page, {
         url: analyzeUrl
@@ -60,7 +60,7 @@ function AnalyzePage(page, headers, analyzeUrl)
     performanceResults["cssminify"] = CheckCssMinify(dom);
     performanceResults["requests"] = CheckRequests(dom);    // FIX SENDING REQUESTS INSIDE FUNCTIONS
     performanceResults["size"] = CheckPageSize(dom);
-    performanceResults["response"] = CheckResponseTime(dom);
+    performanceResults["response"] = CheckResponseTime(responseTime);
     analyzeResults["performance"] = performanceResults;
 
     securityResults["directorylisting"] = CheckDirectoryListing(dom);

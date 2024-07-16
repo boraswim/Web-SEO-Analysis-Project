@@ -1,4 +1,4 @@
-import { LinkFilter } from '../filter.js';
+import { LinkFilter } from '../filter/filter.js';
 
 function ParseLink(dom)
 {

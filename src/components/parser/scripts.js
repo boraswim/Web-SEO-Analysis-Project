@@ -1,4 +1,4 @@
-import { ScriptFilter } from "../filter.js";
+import { ScriptFilter } from "../filter/filter.js";
 
 function ParseScript(dom)
 {

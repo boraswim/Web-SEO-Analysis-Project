@@ -5,7 +5,7 @@ You can manually create a robots.txt file and upload it to your site's web root.
 A simpler option is to use a plugin for your CMS platform.
 */
 
-import ScrapeUrl from "../../scrape.js";
+import ScrapeUrl from "../../scraper/scraper.js";
 
 // Async function does not work in base analyzer function
 async function CheckRobots(dom)

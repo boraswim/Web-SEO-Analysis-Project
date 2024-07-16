@@ -5,7 +5,11 @@ We recommend getting an SSL certificate installed immediately.
 
 function CheckSsl(dom)
 {
-    return "empty";
+    const protocol = dom.window.location.protocol;
+
+    if(protocol !== 'https:'){return 'negative - protocol is not https';}
+
+    else{return 'positive';}
 }
 
 export default CheckSsl;

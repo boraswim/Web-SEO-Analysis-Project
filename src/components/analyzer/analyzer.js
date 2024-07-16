@@ -22,7 +22,6 @@ import CheckPageSize from './performance/pagesize.js';
 import CheckResponseTime from './performance/responsetime.js';
 
 import CheckDirectoryListing from './security/directorylisting.js';
-import CheckGoogleFlag from './security/googleflag.js';
 import CheckSsl from './security/ssl.js';
 
 const { JSDOM } = jsdom;
@@ -63,8 +62,7 @@ function AnalyzePage(page, headers, analyzeUrl, responseTime)
     performanceResults["response"] = CheckResponseTime(responseTime);
     analyzeResults["performance"] = performanceResults;
 
-    securityResults["directorylisting"] = CheckDirectoryListing(dom);
-    securityResults["googleflag"] = CheckGoogleFlag(dom);
+    securityResults["directorylisting"] = CheckDirectoryListing(dom);   // FIX SENDING REQUESTS INSIDE FUNCTIONS
     securityResults["ssl"] = CheckSsl(dom);
     analyzeResults["security"] = securityResults;
 

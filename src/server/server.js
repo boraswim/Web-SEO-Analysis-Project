@@ -25,7 +25,6 @@ app.get("/analyzeurl", (req, res) => {
     ScrapeUrl(scrapeUrl)
     .then(function(result){
         var receiveDate = (new Date()).getTime();
-        const httpHeaders = result.headers;
         const resultObj = AnalyzePage(result.data, result.headers, scrapeUrl, receiveDate - sendDate);
         res.send(resultObj);
         })

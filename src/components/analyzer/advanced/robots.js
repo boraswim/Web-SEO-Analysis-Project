@@ -8,7 +8,7 @@ A simpler option is to use a plugin for your CMS platform.
 import ScrapeUrl from "../../scraper/scraper.js";
 
 // Async function does not work in base analyzer function
-async function CheckRobots(dom)
+function CheckRobots(dom)
 {
     /*
     var robots;

@@ -6,8 +6,8 @@ Add your keywords or synonyms - but do it in a natural way.
 function CheckAltText(dom)
 {
     const checkAltTextObj = {};
+    const checkAltTextArray = [];
     const imgElements = dom.window.document.images;
-    const noAltTextArray = [];
 
     checkAltTextObj['status'] = 'positive';
 
@@ -19,11 +19,12 @@ function CheckAltText(dom)
             
             else
             {
-                noAltTextArray[i] = imgElements[i];
+                checkAltTextArray[i] = imgElements[i];
                 checkAltTextObj['status'] = 'negative';
+                checkAltTextObj['description'] = 'image(s) with no alttext found';
             }
         }
-        checkAltTextObj['instances'] = noAltTextArray;
+        checkAltTextObj['instances'] = checkAltTextArray;
     }
 
     return checkAltTextObj;

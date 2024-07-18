@@ -28,10 +28,15 @@ function CheckDescription(dom)
         else
         {
             checkDescriptionObj['status'] = 'negative';
+            checkDescriptionObj['description'] = 'description length does not meet requirements';
         }
     }
 
-    else{checkDescriptionObj['status'] = 'negative';}
+    else
+    {
+        checkDescriptionObj['status'] = 'negative';
+        checkDescriptionObj['description'] = 'no description meta found';
+    }
 
     return checkDescriptionObj;
 }

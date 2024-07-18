@@ -9,17 +9,31 @@ Think of it as a mini-advertisement for your content.
 
 function CheckDescription(dom)
 {
+    const checkDescriptionObj = {};
+    const checkDescriptionArray = [];
     const metaDescription = dom.window.document.querySelector("meta[name='description']");
-    
+
     if(metaDescription !== null && metaDescription.hasAttribute("content"))
     {
         const descriptionContent = dom.window.document.querySelector("meta[name='description']").getAttribute("content");
-        if(descriptionContent.length > 40 && descriptionContent.length < 80){return 'positive';}
+        checkDescriptionArray[0] = descriptionContent;
+        checkDescriptionObj['instances'] = checkDescriptionArray;
+        checkDescriptionObj['details'] = descriptionContent.length;
+        if(descriptionContent.length > 40 && descriptionContent.length < 80)
+        {
+            checkDescriptionObj['status'] = 'positive';
+
+        }
         
-        else{return 'negative - description length';}
+        else
+        {
+            checkDescriptionObj['status'] = 'negative';
+        }
     }
 
-    else{return 'negative - description not found';}
+    else{checkDescriptionObj['status'] = 'negative';}
+
+    return checkDescriptionObj;
 }
 
 export default CheckDescription;

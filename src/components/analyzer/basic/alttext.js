@@ -5,20 +5,28 @@ Add your keywords or synonyms - but do it in a natural way.
 
 function CheckAltText(dom)
 {
+    const checkAltTextObj = {};
     const imgElements = dom.window.document.images;
+    const noAltTextArray = [];
+
+    checkAltTextObj['status'] = 'positive';
+
     if(imgElements !== null)
     {
         for(var i = 0; i < imgElements.length; i++)
         {
             if(imgElements[i].getAttribute("alt") !== undefined){continue;}
             
-            else{return 'negative - alttext not found';}
+            else
+            {
+                noAltTextArray[i] = imgElements[i];
+                checkAltTextObj['status'] = 'negative';
+            }
         }
+        checkAltTextObj['instances'] = noAltTextArray;
     }
-    
-    else{return 'negative - image not found';}
 
-    return 'positive';
+    return checkAltTextObj;
 }
 
 export default CheckAltText;

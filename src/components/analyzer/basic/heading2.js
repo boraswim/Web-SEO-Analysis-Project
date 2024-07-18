@@ -14,15 +14,33 @@ It will send the wrong message to your readers, possibly driving them away.
 
 function CheckH2(dom)
 {
+    const checkH2Obj = {};
+    const checkH2Array = [];
     const h2Elements = dom.window.document.querySelectorAll('h2');
+    checkH2Array = h2Elements;
+
     if(h2Elements !== null)
     {
-        if(h2Elements.length >= 1 && h2Elements.length < 4){return 'positive';}
+        if(h2Elements.length >= 1 && h2Elements.length < 4)
+            {
+                checkH2Obj['status'] = 'positive';
+            }
         
-        else{return 'negative - h2 more than three';}
+        else
+        {
+            checkH2Obj['status'] = 'negative';
+            checkH2Obj['description'] = 'h2 more than three';
+        }
     }
     
-    else{return 'negative - h2 not found';}
+    else
+    {
+        checkH2Obj['status'] = 'negative';
+        checkH2Obj['description'] = 'no h2 found';
+    }
+
+    checkH2Obj['instances'] = checkH2Array;
+    return checkH2Obj;
 }
 
 export default CheckH2;

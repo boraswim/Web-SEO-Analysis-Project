@@ -10,6 +10,7 @@ function CheckAltText(dom)
     const imgElements = dom.window.document.images;
 
     checkAltTextObj['status'] = 'positive';
+    checkAltTextObj['description'] = 'all image(s) have alttext';
 
     if(imgElements !== null)
     {

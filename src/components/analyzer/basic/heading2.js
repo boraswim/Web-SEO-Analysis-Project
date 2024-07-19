@@ -24,6 +24,7 @@ function CheckH2(dom)
         if(h2Elements.length >= 1 && h2Elements.length < 4)
             {
                 checkH2Obj['status'] = 'positive';
+                checkH2Obj['description'] = 'h2 elements exist within the expected amount range';
             }
         
         else

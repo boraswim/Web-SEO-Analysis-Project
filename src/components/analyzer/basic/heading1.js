@@ -24,6 +24,7 @@ function CheckH1(dom)
         if(h1Elements.length === 1)
             {
                 checkH1Obj['status'] = 'positive';
+                checkH1Obj['description'] = 'only one h1 found';
             }
         
         else

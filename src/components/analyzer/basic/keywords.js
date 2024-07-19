@@ -56,6 +56,7 @@ function CheckKeywords(dom)
         else
             {
                 checkKeywordObj["status"] = "positive";
+                checkKeywordObj["description"] = "both title and description include keywords";
             }
     }
 

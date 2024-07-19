@@ -22,7 +22,7 @@ function CheckDescription(dom)
         if(descriptionContent.length > 40 && descriptionContent.length < 80)
         {
             checkDescriptionObj['status'] = 'positive';
-
+            checkDescriptionObj['description'] = 'description exists and meets length requirements';
         }
         
         else

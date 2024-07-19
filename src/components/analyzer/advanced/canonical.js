@@ -15,21 +15,21 @@ function CheckCanonicalLink(dom)
         checkCanonicalLinkArray[0] = canonicalLink;
         if(canonicalLink.getAttribute("href") === dom.window.location.href)
             {
-                checkNoIndexObj['status'] = 'positive';
-                checkNoIndexObj['description'] = 'canonical link matches root url';
+                checkCanonicalLinkObj['status'] = 'positive';
+                checkCanonicalLinkObj['description'] = 'canonical link matches root url';
             }
         
         else
         {
-            checkNoIndexObj['status'] = 'negative';
-            checkNoIndexObj['description'] = 'canonical link does not match root url';
+            checkCanonicalLinkObj['status'] = 'negative';
+            checkCanonicalLinkObj['description'] = 'canonical link does not match root url';
         }
     }
     
     else
     {
-        checkNoIndexObj['status'] = 'negative';
-        checkNoIndexObj['description'] = 'canonical link not found';
+        checkCanonicalLinkObj['status'] = 'negative';
+        checkCanonicalLinkObj['description'] = 'canonical link not found';
     }
 
     checkCanonicalLinkObj["instances"] = checkCanonicalLinkArray;

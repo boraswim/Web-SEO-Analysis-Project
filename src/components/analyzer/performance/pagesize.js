@@ -17,11 +17,26 @@ So you should always strip them from your templates or themes before you use the
 
 function CheckPageSize(dom)
 {
+    const checkPageSizeObj = {};
+    const checkPageSizeArray = [];
+
     const pageSize = dom.serialize().length / 1000;
+    checkPageSizeArray[0] = pageSize;
 
-    if(pageSize > 50){return 'negative - page size bigger than 50kb';}
+    if(pageSize > 50)
+        {
+            checkPageSizeObj['status'] = 'negative';
+            checkPageSizeObj['description'] = 'page size bigger than 50kb';
+        }
 
-    else{return "positive";}
+    else
+        {
+            checkPageSizeObj['status'] = 'positive';
+            checkPageSizeObj['description'] = 'page size smaller than 50kb';
+        }
+
+    checkPageSizeObj["instances"] = checkPageSizeArray;
+    return checkPageSizeObj;
 }
 
 export default CheckPageSize;

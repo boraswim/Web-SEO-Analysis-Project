@@ -10,10 +10,25 @@ A user's request is handled by the edge server that's closest to their physical 
 
 function CheckResponseTime(responseTime)
 {
-    const responseTimeInSeconds = responseTime / 1000;
-    if(responseTimeInSeconds > 0.2){return "negative - load time longer than 0.2 seconds";}
+    const checkResponseTimeObj = {};
+    const checkResponseTimeArray = [];
 
-    else{return "positive";}
+    const responseTimeInSeconds = responseTime / 1000;
+    checkResponseTimeArray[0] = responseTimeInSeconds;
+    if(responseTimeInSeconds > 0.2)
+        {
+            checkResponseTimeObj['status'] = 'negative';
+            checkResponseTimeObj['description'] = 'load time longer than 0.2 seconds';
+        }
+
+    else
+    {
+        checkResponseTimeObj['status'] = 'positive';
+        checkResponseTimeObj['description'] = 'load time shorter than 0.2 seconds';
+    }
+
+    checkResponseTimeObj["instances"] = checkResponseTimeArray;
+    return checkResponseTimeObj;
 }
 
 export default CheckResponseTime;

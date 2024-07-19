@@ -8,15 +8,32 @@ You also need to understand the psychology of your target audience.
 
 function CheckTitle(dom)
 {
+    const checkTitleObj = {};
+    const checkTitleArray = [];
     const htmlTitle = dom.window.document.title;
+    checkTitleArray[0] = htmlTitle;
+
     if(htmlTitle !== null)
     {
-        if(htmlTitle.length > 20 && htmlTitle.length < 40){return 'positive';}
-        
-        else{return 'negative - title length';}
+        if(htmlTitle.length > 20 && htmlTitle.length < 40)
+            {
+            checkTitleObj['status'] = 'positive';
+            checkTitleObj['description'] = 'title exists and meets length requirements';
+            }
+        else
+        {
+            checkTitleObj['status'] = 'negative';
+            checkTitleObj['description'] = 'title length does not meet requirements';
+        }
     }
 
-    else{return 'negative - title not found';}
+    else
+    {
+        checkTitleObj['status'] = 'negative';
+        checkTitleObj['description'] = 'title not found';
+    }
+
+    return checkTitleObj;
 }
 
 export default CheckTitle;

@@ -8,13 +8,26 @@ There are server-side tools (including WordPress plugins) to automatically minif
 
 function CheckJsMinify(dom)
 {
+    const checkJsMinifyObj = {};
+    const checkJsMinifyArray = [];
+
     const scripts = dom.window.document.scripts;
+
+    checkJsMinifyObj['status'] = 'positive';
+    checkJsMinifyObj['description'] = 'all js files are minified';
+
     for(var i = 0; i < scripts.length; i++)
     {
-        if(scripts[i].innerHTML.includes(' ')){return "negative - there are unminified js files";}
+        if(scripts[i].innerHTML.includes(' '))
+            {
+                checkJsMinifyArray[checkJsMinifyArray.length] = scripts[i];
+                checkJsMinifyObj['status'] = 'negative';
+                checkJsMinifyObj['description'] = 'not all js files are minified';
+            }
     }
     
-    return "positive";
+    checkJsMinifyObj["instances"] = checkJsMinifyArray;
+    return checkJsMinifyObj;
 }
 
 export default CheckJsMinify;

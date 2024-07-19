@@ -7,15 +7,33 @@ If you've republished an article from another source (such as another site or a 
 
 function CheckCanonicalLink(dom)
 {
+    const checkCanonicalLinkObj = {};
+    const checkCanonicalLinkArray = [];
     const canonicalLink = dom.window.document.querySelector("link[rel='canonical']");
     if(canonicalLink !== null)
     {
-        if(canonicalLink.getAttribute("href") === dom.window.location.href){return 'positive';}
+        checkCanonicalLinkArray[0] = canonicalLink;
+        if(canonicalLink.getAttribute("href") === dom.window.location.href)
+            {
+                checkNoIndexObj['status'] = 'positive';
+                checkNoIndexObj['description'] = 'canonical link matches root url';
+            }
         
-        else{return 'negative - wrong canonical link';}
+        else
+        {
+            checkNoIndexObj['status'] = 'negative';
+            checkNoIndexObj['description'] = 'canonical link does not match root url';
+        }
     }
     
-    else{return 'negative - canonical link not found';}
+    else
+    {
+        checkNoIndexObj['status'] = 'negative';
+        checkNoIndexObj['description'] = 'canonical link not found';
+    }
+
+    checkCanonicalLinkObj["instances"] = checkCanonicalLinkArray;
+    return checkCanonicalLinkObj;
 }
 
 export default CheckCanonicalLink;

@@ -5,11 +5,28 @@ The standard is very well documented - you can learn more from Facebook's develo
 
 function CheckOpenGraph(dom)
 {
+    const checkOpenGraphObj = {};
+    const checkOpenGraphArray = [];
     const openGraphElements = dom.window.document.querySelectorAll("meta[property^='og:']");
 
-    if(openGraphElements.length > 0){return 'positive';}
+    if(openGraphElements.length > 0)
+        {
+            for(let i = 0; i < openGraphElements.length; i++)
+            {
+                checkOpenGraphArray[i] = openGraphElements[i];
+            }
+            checkOpenGraphObj['status'] = 'positive';
+            checkOpenGraphObj['description'] = 'opengraph meta tags found';
+        }
 
-    else{return 'negative - opengraph meta tag not found';}
+    else
+    {
+        checkOpenGraphObj['status'] = 'negative';
+        checkOpenGraphObj['description'] = 'opengraph meta tag not found';
+    }
+
+    checkOpenGraphObj["instances"] = checkOpenGraphArray;
+    return checkOpenGraphObj;
 }
 
 export default CheckOpenGraph;

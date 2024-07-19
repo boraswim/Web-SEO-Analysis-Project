@@ -20,7 +20,7 @@ function CheckAltText(dom)
             
             else
             {
-                checkAltTextArray[i] = imgElements[i];
+                checkAltTextArray[checkAltTextArray.length] = imgElements[i];
                 checkAltTextObj['status'] = 'negative';
                 checkAltTextObj['description'] = 'image(s) with no alttext found';
             }

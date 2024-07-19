@@ -9,22 +9,53 @@ If you link to a resource where they can learn more, they'll be grateful. What's
 
 function CheckLinks(dom)
 {
+    const checkLinksObj = {};
+    const checkLinksArray = [];
     var absoluteLinks = 0;
     var relativeLinks = 0;
     var badLinks = 0;
     const linkElements = dom.window.document.links;
     for(var i = 0; i < linkElements.length; i++)
     {
-        if(linkElements[i].getAttribute("href").startsWith('/')){relativeLinks++;}
+        if(linkElements[i].getAttribute("href").startsWith('/'))
+            {
+                checkLinksArray[checkLinksArray.length] = linkElements[i];
+                relativeLinks++;
+            }
         
-        else if(linkElements[i].getAttribute("href")===null){badLinks++;}
+        else if(linkElements[i].getAttribute("href")===null)
+            {
+                checkLinksArray[checkLinksArray.length] = linkElements[i];
+                badLinks++;
+            }
         
-        else{absoluteLinks++;}
+        else
+            {
+                checkLinksArray[checkLinksArray.length] = linkElements[i];
+                absoluteLinks++;
+            }
     }
+    checkLinksObj["instances"] = checkLinksArray;
 
-    if(absoluteLinks > 0 && relativeLinks > 0){return 'positive';}
+    if(absoluteLinks > 0 && relativeLinks > 0 && badLinks <= 0)
+        {
+            checkLinksObj["status"] = "positive";
+            checkLinksObj["description"] = "absolute and relative links found";
+        }
         
-    else{return 'negative - links not found';}
+    else if(absoluteLinks > 0 && relativeLinks > 0 && badLinks > 0)
+        {
+            checkLinksObj["status"] = "negative";
+            checkLinksObj["description"] = "bad links found";
+        }
+
+    else
+        {
+            checkKeywordObj["status"] = "negative";
+            checkKeywordObj["description"] = "no links found";
+        }
+
+    return checkLinksObj;
 }
 
 export default CheckLinks;

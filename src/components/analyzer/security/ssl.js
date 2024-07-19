@@ -5,11 +5,26 @@ We recommend getting an SSL certificate installed immediately.
 
 function CheckSsl(dom)
 {
+    const checkSslObj = {};
+    const checkSslArray = [];
+
     const protocol = dom.window.location.protocol;
+    checkSslArray[0] = protocol;
 
-    if(protocol !== 'https:'){return 'negative - protocol is not https';}
+    if(protocol !== 'https:')
+        {
+            checkSslObj['status'] = 'negative';
+            checkSslObj['description'] = 'protocol is not https';
+        }
 
-    else{return 'positive';}
+    else
+    {
+        checkSslObj['status'] = 'positive';
+        checkSslObj['description'] = 'protocol is https';
+    }
+
+    checkSslObj["instances"] = checkSslArray;
+    return checkSslObj;
 }
 
 export default CheckSsl;

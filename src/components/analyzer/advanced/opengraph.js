@@ -13,7 +13,7 @@ function CheckOpenGraph(dom)
         {
             for(let i = 0; i < openGraphElements.length; i++)
             {
-                checkOpenGraphArray[i] = openGraphElements[i];
+                checkOpenGraphArray[i] = openGraphElements[i].getAttribute("property") + " : " + openGraphElements[i].getAttribute("content");
             }
             checkOpenGraphObj['status'] = 'positive';
             checkOpenGraphObj['description'] = 'opengraph meta tags found';

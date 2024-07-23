@@ -12,7 +12,7 @@ function CheckKeywords(dom)
     const htmlTitle = dom.window.document.title;
     const metaDescription = dom.window.document.querySelector("meta[name='description']");
     var titleHasKeyword, descriptionHasKeyword;
-    if(htmlTitle !== null && metaDescription !== null)
+    if(htmlTitle !== null && metaDescription !== null && keywords !== null)
     {
         const descriptionContent = metaDescription.getAttribute("content");
         checkKeywordArray[0] = descriptionContent;
@@ -22,7 +22,6 @@ function CheckKeywords(dom)
                 if(descriptionContent[i] === keywords[j])
                     {
                         descriptionHasKeyword = true;
-
                     }
             }
         }
@@ -34,8 +33,7 @@ function CheckKeywords(dom)
                 if(htmlTitle[i] === keywords[j]){titleHasKeyword = true;}
             }
         }
-        checkKeywordObj["status"] = "negative";
-        checkKeywordObj["description"] = "no keywords found";
+
         checkKeywordObj["instances"] = checkKeywordArray;
 
         if(!descriptionHasKeyword && titleHasKeyword)
@@ -43,12 +41,12 @@ function CheckKeywords(dom)
                 checkKeywordObj["status"] = "negative";
                 checkKeywordObj["description"] = "description does not include keywords";
             }
-        if(descriptionHasKeyword && !titleHasKeyword)
+        else if(descriptionHasKeyword && !titleHasKeyword)
             {
                 checkKeywordObj["status"] = "negative";
                 checkKeywordObj["description"] = "title does not include keywords";
             }
-        if(!descriptionHasKeyword && !titleHasKeyword)
+        else if(!descriptionHasKeyword && !titleHasKeyword)
             {
                 checkKeywordObj["status"] = "negative";
                 checkKeywordObj["description"] = "neither title nor description include keywords";
@@ -58,6 +56,12 @@ function CheckKeywords(dom)
                 checkKeywordObj["status"] = "positive";
                 checkKeywordObj["description"] = "both title and description include keywords";
             }
+    }
+
+    else
+    {
+        checkKeywordObj["status"] = "negative";
+        checkKeywordObj["description"] = "no keywords found";
     }
 
     return checkKeywordObj;

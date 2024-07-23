@@ -13,12 +13,14 @@ You should write as if your readers are selfish people with short attention span
 Readers visit websites for selfish reasons - they're not there to make you happy.
 */
 
+import StoreArray from "../../storer/storer.js";
+
 function CheckH1(dom)
 {
     const checkH1Obj = {};
     var checkH1Array = [];
     const h1Elements = dom.window.document.querySelectorAll('h1');
-    checkH1Array = h1Elements;
+    checkH1Array = StoreArray(h1Elements);
     if(h1Elements !== null)
     {
         if(h1Elements.length === 1)

@@ -12,12 +12,14 @@ Don't try to force keywords into sub-headings if they feel unnatural.
 It will send the wrong message to your readers, possibly driving them away.
 */
 
+import StoreArray from "../../storer/storer.js";
+
 function CheckH2(dom)
 {
     const checkH2Obj = {};
     var checkH2Array = [];
     const h2Elements = dom.window.document.querySelectorAll('h2');
-    checkH2Array = h2Elements;
+    checkH2Array = StoreArray(h2Elements);
 
     if(h2Elements !== null)
     {

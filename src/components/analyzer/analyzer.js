@@ -3,8 +3,8 @@ import jsdom from 'jsdom';
 import CheckTitle from './basic/title.js';
 import CheckDescription from './basic/description.js';
 import CheckAltText from './basic/alttext.js';
-import CheckH1 from './basic/header1.js';
-import CheckH2 from './basic/header2.js';
+import CheckH1 from './basic/heading1.js';
+import CheckH2 from './basic/heading2.js';
 import CheckLinks from './basic/links.js';
 import CheckKeywords from './basic/keywords.js';
 

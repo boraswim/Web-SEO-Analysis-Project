@@ -22,7 +22,7 @@ function CheckCssMinify(dom)
     {
         if(inlineStyles[i].getAttribute('style').includes(' '))
             {
-                inlineStylesArray[inlineStylesArray.length] = inlineStyles[i].outerHTML;
+                inlineStylesArray[inlineStylesArray.length] = inlineStyles[i].getAttribute('style');
             }
     }
 
@@ -32,13 +32,13 @@ function CheckCssMinify(dom)
     {
         if(internalStyles[i].innerHTML.includes(' '))
             {
-                internalStylesArray[internalStylesArray.length] = internalStyles[i].outerHTML;
+                internalStylesArray[internalStylesArray.length] = internalStyles[i].innerHTML;
             }
     }
 
     checkCssMinifyArray[1] = internalStylesArray;
 
-    if(internalStylesArray.length !== 0 && inlineStylesArray.length !== 0)
+    if(internalStylesArray.length !== 0 || inlineStylesArray.length !== 0)
     {
         checkCssMinifyObj['status'] = 'negative';
         checkCssMinifyObj['description'] = 'not all css files are minified';

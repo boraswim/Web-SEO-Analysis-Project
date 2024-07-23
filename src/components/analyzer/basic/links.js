@@ -11,39 +11,40 @@ function CheckLinks(dom)
 {
     const checkLinksObj = {};
     const checkLinksArray = [];
-    var absoluteLinks = 0;
-    var relativeLinks = 0;
-    var badLinks = 0;
+    var absoluteLinks = [];
+    var relativeLinks = [];
+    var badLinks = [];
     const linkElements = dom.window.document.links;
     for(var i = 0; i < linkElements.length; i++)
     {
         if(linkElements[i].getAttribute("href").startsWith('/'))
             {
-                checkLinksArray[checkLinksArray.length] = linkElements[i];
-                relativeLinks++;
+                relativeLinks[relativeLinks.length] = linkElements[i].getAttribute("href");
             }
         
         else if(linkElements[i].getAttribute("href")===null)
             {
-                checkLinksArray[checkLinksArray.length] = linkElements[i];
-                badLinks++;
+                badLinks[badLinks.length] = linkElements[i].getAttribute("href");
             }
         
         else
             {
-                checkLinksArray[checkLinksArray.length] = linkElements[i];
-                absoluteLinks++;
+                absoluteLinks[absoluteLinks.length] = linkElements[i].getAttribute("href");
             }
+
+        checkLinksArray[0] = relativeLinks;
+        checkLinksArray[1] = badLinks;
+        checkLinksArray[2] = absoluteLinks;
     }
     checkLinksObj["instances"] = checkLinksArray;
 
-    if(absoluteLinks > 0 && relativeLinks > 0 && badLinks <= 0)
+    if(absoluteLinks.length > 0 && relativeLinks.length > 0 && badLinks.length <= 0)
         {
             checkLinksObj["status"] = "positive";
             checkLinksObj["description"] = "absolute and relative links found";
         }
         
-    else if(absoluteLinks > 0 && relativeLinks > 0 && badLinks > 0)
+    else if(absoluteLinks.length > 0 && relativeLinks.length > 0 && badLinks.length > 0)
         {
             checkLinksObj["status"] = "negative";
             checkLinksObj["description"] = "bad links found";

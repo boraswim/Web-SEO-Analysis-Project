@@ -12,7 +12,7 @@ function CheckCanonicalLink(dom)
     const canonicalLink = dom.window.document.querySelector("link[rel='canonical']");
     if(canonicalLink !== null)
     {
-        checkCanonicalLinkArray[0] = canonicalLink;
+        checkCanonicalLinkArray[0] = canonicalLink.getAttribute("href");
         if(canonicalLink.getAttribute("href") === dom.window.location.href)
             {
                 checkCanonicalLinkObj['status'] = 'positive';

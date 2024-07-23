@@ -20,7 +20,7 @@ function CheckJsMinify(dom)
     {
         if(scripts[i].innerHTML.includes(' '))
             {
-                checkJsMinifyArray[checkJsMinifyArray.length] = scripts[i];
+                checkJsMinifyArray[checkJsMinifyArray.length] = scripts[i].innerHTML;
                 checkJsMinifyObj['status'] = 'negative';
                 checkJsMinifyObj['description'] = 'not all js files are minified';
             }

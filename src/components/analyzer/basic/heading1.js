@@ -16,7 +16,7 @@ Readers visit websites for selfish reasons - they're not there to make you happy
 function CheckH1(dom)
 {
     const checkH1Obj = {};
-    const checkH1Array = [];
+    var checkH1Array = [];
     const h1Elements = dom.window.document.querySelectorAll('h1');
     checkH1Array = h1Elements;
     if(h1Elements !== null)

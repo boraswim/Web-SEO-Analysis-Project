@@ -15,7 +15,7 @@ It will send the wrong message to your readers, possibly driving them away.
 function CheckH2(dom)
 {
     const checkH2Obj = {};
-    const checkH2Array = [];
+    var checkH2Array = [];
     const h2Elements = dom.window.document.querySelectorAll('h2');
     checkH2Array = h2Elements;
 

@@ -14,7 +14,7 @@ function CheckNoIndexHeader(dom)
         checkNoIndexObj['description'] = 'noindex meta tags found';
         for(let i = 0; i < noIndexElements.length; i++)
         {
-            checkNoIndexArray[noIndexElements.length] = noIndexElements[i];
+            checkNoIndexArray[noIndexElements.length] = noIndexElements[i].getAttribute("property") + ": " + noIndexElements[i].getAttribute("content");
         }
     }
     

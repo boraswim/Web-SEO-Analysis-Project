@@ -26,20 +26,19 @@ function CheckH2(dom)
         if(h2Elements.length >= 1 && h2Elements.length < 4)
             {
                 checkH2Obj['status'] = 'positive';
-                checkH2Obj['description'] = 'h2 elements exist within the expected amount range';
+                checkH2Obj['description'] = 'H2 elements are between 1 and 3';
             }
-        
+
+        else if(h2Elements.length === 0)
+        {
+            checkH2Obj['status'] = 'negative';
+            checkH2Obj['description'] = 'No h2 found';
+        }
         else
         {
             checkH2Obj['status'] = 'negative';
-            checkH2Obj['description'] = 'h2 more than three';
+            checkH2Obj['description'] = 'H2 more than three';
         }
-    }
-    
-    else
-    {
-        checkH2Obj['status'] = 'negative';
-        checkH2Obj['description'] = 'no h2 found';
     }
 
     checkH2Obj['instances'] = checkH2Array;

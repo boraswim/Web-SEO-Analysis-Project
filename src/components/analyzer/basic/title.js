@@ -11,10 +11,10 @@ function CheckTitle(dom)
     const checkTitleObj = {};
     const checkTitleArray = [];
     const htmlTitle = dom.window.document.title;
-    checkTitleArray[0] = htmlTitle;
 
     if(htmlTitle !== null)
     {
+        checkTitleArray[0] = htmlTitle;
         if(htmlTitle.length > 20 && htmlTitle.length < 40)
             {
             checkTitleObj['status'] = 'positive';
@@ -32,7 +32,7 @@ function CheckTitle(dom)
         checkTitleObj['status'] = 'negative';
         checkTitleObj['description'] = 'title not found';
     }
-
+    checkTitleObj["instances"] = checkTitleArray;
     return checkTitleObj;
 }
 

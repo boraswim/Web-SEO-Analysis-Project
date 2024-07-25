@@ -40,11 +40,11 @@ function AnalyzePage(page, headers, analyzeUrl, responseTime)
 
     basicResults["title"] = CheckTitle(dom);
     basicResults["description"] = CheckDescription(dom);
-    basicResults["h1"] = CheckH1(dom);
-    basicResults["h2"] = CheckH2(dom);
+    basicResults["heading1"] = CheckH1(dom);
+    basicResults["heading2"] = CheckH2(dom);
     basicResults["alttext"] = CheckAltText(dom);
-    basicResults["link"] = CheckLinks(dom);
-    basicResults["keyword"] = CheckKeywords(dom);
+    basicResults["links"] = CheckLinks(dom);
+    basicResults["keywords"] = CheckKeywords(dom);
     analyzeResults["basic"] = basicResults;
 
     advancedResults["canonical"] = CheckCanonicalLink(dom);

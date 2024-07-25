@@ -15,22 +15,22 @@ function CheckTitle(dom)
     if(htmlTitle !== null)
     {
         checkTitleArray[0] = htmlTitle;
-        if(htmlTitle.length > 20 && htmlTitle.length < 40)
+        if(htmlTitle.length > 30 && htmlTitle.length < 60)
             {
             checkTitleObj['status'] = 'positive';
-            checkTitleObj['description'] = 'title exists and meets length requirements';
+            checkTitleObj['description'] = 'Title length is between 30 and 60 characters';
             }
         else
         {
             checkTitleObj['status'] = 'negative';
-            checkTitleObj['description'] = 'title length does not meet requirements';
+            checkTitleObj['description'] = 'Title length is not between 30 and 60 characters';
         }
     }
 
     else
     {
         checkTitleObj['status'] = 'negative';
-        checkTitleObj['description'] = 'title not found';
+        checkTitleObj['description'] = 'Title not found';
     }
     checkTitleObj["instances"] = checkTitleArray;
     return checkTitleObj;

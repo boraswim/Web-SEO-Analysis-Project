@@ -26,20 +26,20 @@ function CheckH1(dom)
         if(h1Elements.length === 1)
             {
                 checkH1Obj['status'] = 'positive';
-                checkH1Obj['description'] = 'only one h1 found';
+                checkH1Obj['description'] = 'Only one H1 element found';
             }
         
         else
         {
             checkH1Obj['status'] = 'negative';
-            checkH1Obj['description'] = 'h1 more than one';
+            checkH1Obj['description'] = 'There are more than one H1 element';
         }
     }
     
     else
     {
         checkH1Obj['status'] = 'negative';
-        checkH1Obj['description'] = 'no h1 found';
+        checkH1Obj['description'] = 'No H1 element found';
     }
 
     checkH1Obj['instances'] = checkH1Array;

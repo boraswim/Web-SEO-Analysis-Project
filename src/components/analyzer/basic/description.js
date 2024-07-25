@@ -19,16 +19,16 @@ function CheckDescription(dom)
         checkDescriptionArray[0] = descriptionContent;
         checkDescriptionObj['instances'] = checkDescriptionArray;
         checkDescriptionObj['details'] = descriptionContent.length;
-        if(descriptionContent.length > 40 && descriptionContent.length < 80)
+        if(descriptionContent.length > 155 && descriptionContent.length < 260)
         {
             checkDescriptionObj['status'] = 'positive';
-            checkDescriptionObj['description'] = 'description exists and meets length requirements';
+            checkDescriptionObj['description'] = 'Description length is between 155 and 260 characters';
         }
         
         else
         {
             checkDescriptionObj['status'] = 'negative';
-            checkDescriptionObj['description'] = 'description length does not meet requirements';
+            checkDescriptionObj['description'] = 'Description length is not between 155 and 260 characters';
         }
     }
 

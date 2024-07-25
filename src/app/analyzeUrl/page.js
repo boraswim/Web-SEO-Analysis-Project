@@ -8,7 +8,7 @@ function Page()
 {
     const [fetched, setFetched] = useState(1);
     const [result, setResult] = useState({
-        basic:  {},
+        basic: {title: {status: '', instances: ['']}, description: {status: '', instances: ['']}, heading1: {status: '', instances: ['']}, heading2: {status: '', instances: ['']}, alttext: {status: '', instances: ['']}, keywords: {status: '', instances: ['']}, links: {status: '', instances: [[''], [''], ['']]}},
         advanced: {},
         performance: {},
         security: {},
@@ -37,7 +37,7 @@ function Page()
     return(
         <div>
         <div className='border-bottom border-3'>
-        <h1>Showing results for <i>{analyzeUrl}</i></h1>
+        <h1 className='text-nowrap'>Showing results for <i>{analyzeUrl}</i></h1>
         <input type='button' value="Re-fetch" onClick={() => setFetched(fetched + 1)}/>
         fetched {fetched} times
         </div>
@@ -48,43 +48,99 @@ function Page()
             </Tab>
             <Tab eventKey="basic" title="Basic">
             <h3>Basic Tab</h3>
+            <hr/>
+
+            <h4>Title - {result.basic.title.status}</h4>
             <ul>
-                {
-                    Object.keys(result.basic).map((key, index)=>(
-                        <li key={index}>{key}: {result.basic[key]}</li>
-                    ))
-                }
+                <li>{result.basic.title.instances[0]}</li>
             </ul>
+            <h5>{result.basic.title.description}. Your title length is {result.basic.title.instances[0].length}.</h5>
+            <hr/>
+
+            <h4>Description - {result.basic.description.status}</h4>
+            <ul>
+                <li>{result.basic.description.instances[0]}</li>
+            </ul>
+            <h5>{result.basic.description.description}. Your description length is {result.basic.description.instances[0].length}.</h5>
+            <hr/>
+
+            <h4>Heading 1 - {result.basic.heading1.status}</h4>
+            <ul>
+                {result.basic.heading1.instances.map((item, index) => {
+                    return <li key={index}>{item}</li>
+                })}
+            </ul>
+            <h5>{result.basic.heading1.description}. Your heading1 count is {result.basic.heading1.instances.length}.</h5>
+            <hr/>
+            
+            <h4>Heading 2 - {result.basic.heading2.status}</h4>
+            <ul>
+                {result.basic.heading2.instances.map((item, index) => {
+                    return <li key={index}>{item}</li>
+                })}
+            </ul>
+            <h5>{result.basic.heading2.description}. Your heading2 count is {result.basic.heading2.instances.length}</h5>
+            <hr/>
+            
+            <h4>Image Alttext - {result.basic.alttext.status}</h4>
+            <ul>
+                {result.basic.alttext.instances.map((item, index) => {
+                        return <li key={index}>{item}</li>
+                    })}
+            </ul>
+            <h5>{result.basic.alttext.description}. {result.basic.alttext.instances.length} of your images do not have alttext.</h5>
+            <hr/>
+
+            <h4>Keywords - {result.basic.keywords.status}</h4>
+            <h5>Keywords</h5>
+            <ul>
+                {result.basic.keywords.instances[0]}
+            </ul>
+            <h5>Title</h5>
+            <ul>
+                {result.basic.title.instances[0]}
+            </ul>
+            <h5>Description</h5>
+            <ul>
+                {result.basic.description.instances[0]}
+            </ul>
+            <h5>{result.basic.keywords.description}.</h5>
+            <hr/>
+
+            <h4>Links - {result.basic.links.status}</h4>
+            <h5>Relative links ({result.basic.links.instances[0].length} total)</h5>
+            <ul>
+                {result.basic.links.instances[0].map((item, index) => {
+                            return <li key={index}>{item}</li>
+                        })}
+            </ul>
+            <h5>Bad links ({result.basic.links.instances[1].length} total)</h5>
+            <ul>
+                {result.basic.links.instances[1].map((item, index) => {
+                            return <li key={index}>{item}</li>
+                        })}
+            </ul>
+            <h5>Absolute links ({result.basic.links.instances[2].length} total)</h5>
+            <ul>
+                {result.basic.links.instances[2].map((item, index) => {
+                            return <li key={index}>{item}</li>
+                        })}
+            </ul>
+            <h5>{result.basic.links.description}.</h5>
+            <hr/>
+
             </Tab>
             <Tab eventKey="advanced" title="Advanced">
             <h3>Advanced Tab</h3>
-            <ul>
-            {
-                Object.keys(result.advanced).map((key, index)=>(
-                    <li key={index}>{key}: {result.advanced[key]}</li>
-                ))
-            }
-                </ul>
+
             </Tab>
             <Tab eventKey="performance" title="Performance">
             <h3>Performance Tab</h3>
-            <ul>
-            {
-                Object.keys(result.performance).map((key, index)=>(
-                    <li key={index}>{key}: {result.performance[key]}</li>
-                ))
-            }
-                </ul>
+
             </Tab>
             <Tab eventKey="security" title="Security">
             <h3>Security Tab</h3>
-            <ul>
-                    {
-                        Object.keys(result.security).map((key, index)=>(
-                            <li key={index}>{key}: {result.security[key]}</li>
-                        ))             
-                    }
-            </ul>
+
             </Tab>
 
         </Tabs>

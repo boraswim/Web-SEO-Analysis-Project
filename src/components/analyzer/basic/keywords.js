@@ -7,61 +7,55 @@ What's more, it's pretty off-putting for potential readers, who are more likely 
 function CheckKeywords(dom)
 {
     const checkKeywordObj = {};
+    checkKeywordObj["instances"] = [];
     const checkKeywordArray = [];
     const keywords = dom.window.document.querySelectorAll("meta[name='keywords, Keywords']");
     const htmlTitle = dom.window.document.title;
     const metaDescription = dom.window.document.querySelector("meta[name='description']");
     var titleHasKeyword, descriptionHasKeyword;
-    if(htmlTitle !== null && metaDescription !== null && keywords !== null)
+    console.log(keywords);
+    if(htmlTitle !== null && metaDescription !== null && keywords !== null && keywords.length > 0)
     {
+        checkKeywordArray[0] = keywords[0].getAttribute("content");
+        const keywordsSplit = keywords[0].getAttribute("content").split(",");
         const descriptionContent = metaDescription.getAttribute("content");
-        checkKeywordArray[0] = descriptionContent;
-        for (var i = 0; i < descriptionContent.length; i++) {
-            for(var j = 0; j < keywords.length; j++)
-            {
-                if(descriptionContent[i] === keywords[j])
-                    {
-                        descriptionHasKeyword = true;
-                    }
-            }
-        }
 
-        checkKeywordArray[1] = htmlTitle;
-        for (var i = 0; i < htmlTitle.length; i++) {
-            for(var j = 0; j < keywords.length; j++)
-            {
-                if(htmlTitle[i] === keywords[j]){titleHasKeyword = true;}
-            }
-        }
+        keywordsSplit.forEach(element => {
+            if(descriptionContent.includes(element)){descriptionHasKeyword = true;}
+        });
+
+        keywordsSplit.forEach(element => {
+            if(htmlTitle.includes(element)){titleHasKeyword = true;}
+        });
 
         checkKeywordObj["instances"] = checkKeywordArray;
 
         if(!descriptionHasKeyword && titleHasKeyword)
             {
                 checkKeywordObj["status"] = "negative";
-                checkKeywordObj["description"] = "description does not include keywords";
+                checkKeywordObj["description"] = "Description does not include keywords";
             }
         else if(descriptionHasKeyword && !titleHasKeyword)
             {
                 checkKeywordObj["status"] = "negative";
-                checkKeywordObj["description"] = "title does not include keywords";
+                checkKeywordObj["description"] = "Title does not include keywords";
             }
         else if(!descriptionHasKeyword && !titleHasKeyword)
             {
                 checkKeywordObj["status"] = "negative";
-                checkKeywordObj["description"] = "neither title nor description include keywords";
+                checkKeywordObj["description"] = "Neither title nor description include keywords";
             }
         else
             {
                 checkKeywordObj["status"] = "positive";
-                checkKeywordObj["description"] = "both title and description include keywords";
+                checkKeywordObj["description"] = "Both title and description include keywords";
             }
     }
 
     else
     {
         checkKeywordObj["status"] = "negative";
-        checkKeywordObj["description"] = "no keywords found";
+        checkKeywordObj["description"] = "No keywords found";
     }
 
     return checkKeywordObj;

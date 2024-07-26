@@ -6,12 +6,13 @@ import Tabs from 'react-bootstrap/Tabs';
 
 function Page()
 {
+    var basicCount = 0, advancedCount = 0, performanceCount = 0, securityCount = 0;
     const [fetched, setFetched] = useState(1);
     const [result, setResult] = useState({
         basic: {title: {status: '', instances: ['']}, description: {status: '', instances: ['']}, heading1: {status: '', instances: ['']}, heading2: {status: '', instances: ['']}, alttext: {status: '', instances: ['']}, keywords: {status: '', instances: ['']}, links: {status: '', instances: [[''], [''], ['']]}},
-        advanced: {},
-        performance: {},
-        security: {},
+        advanced: {canonical: {status: '', instances: ['']}, noindex: {status: '', instances: ['']}, opengraph: {status: '', instances: ['']}},
+        performance: {expires: {status: '', instances: ['']}, jsminify: {status: '', instances: ['']}, cssminify: {status: '', instances: ['']}, size: {status: '', instances: ['']}, response: {status: '', instances: ['']}},
+        security: {ssl: {status: '', instances: ['']}}
     });
     const searchParams = useSearchParams();
     const analyzeUrl = searchParams.get('url');
@@ -23,16 +24,35 @@ function Page()
         console.log(`fetched ${fetched} times`);
     }, [fetched]);
 
-    /*
-    function TraverseKeys(object)
-    {
-        var outputTxt ='';
-        Object.keys(object).forEach(key => {
-            outputTxt = outputTxt + `${key}: ${object[key]}, `;
+    Object.keys(result).forEach(key => {
+        Object.keys(result[key]).forEach(subKey => {
+            if(result[key][subKey].status === 'positive')
+            {
+                if(key === 'basic')
+                {
+                    basicCount++;
+                }
+
+                else if(key === 'advanced')
+                {
+                    advancedCount++;
+                }
+
+                else if(key === 'performance')
+                {
+                    performanceCount++;
+                }
+
+                else if(key === 'security')
+                {
+                    securityCount++;
+                }
+            }
         });
-        return <li className='text-break'>{outputTxt}<hr/></li>;
-    }
-    */
+    });
+
+    var totalCount = basicCount + advancedCount + performanceCount + securityCount;
+
 
     return(
         <div>
@@ -45,6 +65,15 @@ function Page()
         <Tabs defaultActiveKey="overview" id="uncontrolled-tab-example" className="mb-3">
             <Tab eventKey="overview" title="Overview" selected>
             <h3>Overview Tab</h3>
+            <hr/>
+            <h4>{totalCount} of 16 tests were successful.</h4>
+            <br/>
+            <h4>The success rate is {totalCount / 16 * 100}%.</h4>
+            <hr/>
+            <h4>{basicCount} out of 7 basic analyzes successful</h4>
+            <h4>{advancedCount} out of 3 advanced analyzes successful</h4>
+            <h4>{performanceCount} out of 5 performance analyzes successful</h4>
+            <h4>{securityCount} out of 1 security analyzes successful</h4>
             </Tab>
             <Tab eventKey="basic" title="Basic">
             <h3>Basic Tab</h3>
@@ -132,14 +161,88 @@ function Page()
             </Tab>
             <Tab eventKey="advanced" title="Advanced">
             <h3>Advanced Tab</h3>
+            <hr/>
+
+            <h4>Canonical - {result.advanced.canonical.status}</h4>
+            <ul>
+                <li>{result.advanced.canonical.instances[0]}</li>
+            </ul>
+            <h5>{result.advanced.canonical.description}.</h5>
+            <hr/>
+
+            <h4>Noindex - {result.advanced.noindex.status}</h4>
+            <ul>
+                {result.advanced.noindex.instances.map((item, index) => {
+                                    return <li key={index}>{item}</li>
+                                })}
+            </ul>
+            <h5>{result.advanced.noindex.description}.</h5>
+            <hr/>
+
+            <h4>Opengraph - {result.advanced.opengraph.status}</h4>
+            <ul>
+                {result.advanced.opengraph.instances.map((item, index) => {
+                                return <li key={index}>{item}</li>
+                            })}
+            </ul>
+            <h5>{result.advanced.opengraph.instances.length} {result.advanced.opengraph.description}.</h5>
+            <hr/>
 
             </Tab>
             <Tab eventKey="performance" title="Performance">
             <h3>Performance Tab</h3>
+            <hr/>
+            
+            <h4>Expires - {result.performance.expires.status}</h4>
+            <ul>
+                {result.performance.expires.instances.map((item, index) => {
+                                    return <li key={index}>{item}</li>
+                                })}
+            </ul>
+            <h5>{result.performance.expires.description}.</h5>
+            <hr/>
+            
+            <h4>Jsminify - {result.performance.jsminify.status}</h4>
+            <ul>
+                {result.performance.jsminify.instances.map((item, index) => {
+                                    return <li key={index}>{item}</li>
+                                })}
+            </ul>
+            <h5>{result.performance.jsminify.description}.</h5>
+            <hr/>
+
+            <h4>Cssminify - {result.performance.expires.status}</h4>
+            <ul>
+                {result.performance.cssminify.instances.map((item, index) => {
+                                    return <li key={index}>{item}</li>
+                                })}
+            </ul>
+            <h5>{result.performance.cssminify.description}.</h5>
+            <hr/>
+
+            <h4>Size - {result.performance.size.status}</h4>
+            <ul>
+                <li>{result.performance.size.instances[0]} kilobytes</li>
+            </ul>
+            <h5>{result.performance.size.description}.</h5>
+            <hr/>
+
+            <h4>Response - {result.performance.response.status}</h4>
+            <ul>
+                <li>{result.performance.response.instances[0]} seconds</li>
+            </ul>
+            <h5>{result.performance.response.description}.</h5>
 
             </Tab>
             <Tab eventKey="security" title="Security">
             <h3>Security Tab</h3>
+            <hr/>
+
+            <h4>Ssl - {result.security.ssl.status}</h4>
+            <ul>
+                <li>{result.security.ssl.instances[0]}</li>
+            </ul>
+            <h5>{result.security.ssl.description}.</h5>
 
             </Tab>
 

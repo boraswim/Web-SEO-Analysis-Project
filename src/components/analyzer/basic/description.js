@@ -10,14 +10,13 @@ Think of it as a mini-advertisement for your content.
 function CheckDescription(dom)
 {
     const checkDescriptionObj = {};
-    const checkDescriptionArray = [];
+    const checkDescriptionArray = [''];
     const metaDescription = dom.window.document.querySelector("meta[name='description']");
 
     if(metaDescription !== null && metaDescription.hasAttribute("content"))
     {
         const descriptionContent = dom.window.document.querySelector("meta[name='description']").getAttribute("content");
         checkDescriptionArray[0] = descriptionContent;
-        checkDescriptionObj['instances'] = checkDescriptionArray;
         checkDescriptionObj['details'] = descriptionContent.length;
         if(descriptionContent.length > 155 && descriptionContent.length < 260)
         {
@@ -38,6 +37,7 @@ function CheckDescription(dom)
         checkDescriptionObj['description'] = 'no description meta found';
     }
 
+    checkDescriptionObj['instances'] = checkDescriptionArray;
     return checkDescriptionObj;
 }
 
